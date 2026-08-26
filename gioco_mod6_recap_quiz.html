@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>MOD6 – Recap NIS2: Quiz Finale</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#0D47A1,#1565C0,#1976d2);min-height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.container{background:#fff;width:800px;height:550px;display:flex;flex-direction:column;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.header{background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.header h1{font-size:15px;font-weight:700}.header p{font-size:11px;opacity:.8;margin-top:1px}
+button{padding:7px 13px;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all .2s}
+.btn-white{background:#fff;color:#0D47A1}.btn-white:hover{background:#e3f2fd}
+.btn-outline{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-outline:hover{background:rgba(255,255,255,.25)}
+.btn-group{display:flex;gap:8px}
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.hidden{display:none!important}
+.instr{padding:18px 24px;overflow-y:auto;flex:1}
+.instr h2{color:#0D47A1;font-size:16px;margin-bottom:10px}
+.instr p,.instr li{font-size:13px;line-height:1.6;color:#444;margin-bottom:5px}
+.instr ul{margin-left:18px;margin-bottom:10px}
+.how-grid{display:flex;gap:10px;margin:10px 0}
+.how-step{flex:1;background:#e3f2fd;border-radius:8px;padding:10px;text-align:center;font-size:12px;color:#0D47A1;font-weight:600;line-height:1.5}
+.how-step .num{font-size:22px;display:block;margin-bottom:4px}
+.start-btn{background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;padding:11px 32px;font-size:14px;border-radius:8px;display:block;margin:14px auto 0;cursor:pointer;border:none;font-weight:600}
+.start-btn:hover{transform:translateY(-2px)}
+.game-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;padding:12px 18px;gap:10px}
+.progress-row{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.prog-bar{flex:1;height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#0D47A1,#42a5f5);border-radius:3px;transition:width .4s}
+.prog-label{font-size:12px;color:#555;font-weight:600;white-space:nowrap}
+.score-badge{background:#1565C0;color:#fff;border-radius:20px;padding:2px 12px;font-size:12px;font-weight:700}
+.topic-tag{background:#e3f2fd;color:#0D47A1;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;align-self:flex-start}
+.question-text{font-size:15px;font-weight:700;color:#0D47A1;line-height:1.5;flex-shrink:0}
+.options-grid{display:flex;flex-direction:column;gap:7px;flex:1;min-height:0;overflow-y:auto}
+.option-btn{background:#fff;border:2px solid #bbdefb;border-radius:8px;padding:10px 14px;cursor:pointer;font-size:12.5px;color:#333;line-height:1.4;text-align:left;transition:all .2s;font-family:'Segoe UI',sans-serif;font-weight:500}
+.option-btn:hover:not(:disabled){border-color:#1565C0;background:#e3f2fd;transform:translateX(4px)}
+.option-btn.correct{border-color:#2e7d32;background:#e8f5e9;color:#1b5e20;font-weight:700}
+.option-btn.wrong{border-color:#c62828;background:#ffebee;color:#b71c1c}
+.option-btn.reveal{border-color:#2e7d32;background:#e8f5e9;opacity:.7}
+.option-btn:disabled{cursor:not-allowed}
+.feedback-box{background:#e3f2fd;border-left:3px solid #1565C0;border-radius:6px;padding:9px 12px;font-size:12px;color:#0D47A1;line-height:1.5;flex-shrink:0;display:none}
+.feedback-box.show{display:block}
+.next-btn{align-self:flex-end;background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;padding:8px 22px;font-size:12px;border-radius:7px;display:none;flex-shrink:0;cursor:pointer;border:none;font-weight:600}
+.next-btn.show{display:block}
+.result-page{flex:1;display:flex;align-items:center;justify-content:center;padding:20px}
+.result-box{text-align:center;max-width:490px}
+.result-icon{font-size:55px;margin-bottom:12px}
+.result-box h2{font-size:20px;font-weight:700;color:#0D47A1;margin-bottom:8px}
+.result-box p{font-size:13px;color:#555;line-height:1.6;margin-bottom:15px}
+.result-score{background:#e3f2fd;border-radius:10px;padding:10px 20px;font-size:15px;font-weight:700;color:#0D47A1;margin-bottom:15px;display:inline-block}
+.result-btns{display:flex;gap:10px;justify-content:center}
+.btn-prim{background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;padding:10px 24px;font-size:13px;border-radius:8px;cursor:pointer;border:none;font-weight:600}
+.btn-sec{background:#78909c;color:#fff;padding:10px 24px;font-size:13px;border-radius:8px;cursor:pointer;border:none;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div><h1>🎓 Recap NIS2</h1><p>Modulo 6 – Ripasso degli argomenti del corso</p></div>
+    <div class="btn-group">
+      <button class="btn-outline" onclick="resetGame()">🔄 Rigioca</button>
+      <button class="btn-white" onclick="window.close()">Torna al corso</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="instrPage" class="instr">
+      <h2>🎯 Come funziona</h2>
+      <p>Un quiz di <strong>12 domande</strong> che ripassa gli argomenti principali visti finora: ambito, notifiche, misure, governance, recepimento italiano (D.Lgs 138/2024 e Legge 90/2024), Modello 231, sanzioni e quadro europeo. Per ogni domanda una sola risposta è corretta.</p>
+      <div class="how-grid">
+        <div class="how-step"><span class="num">📖</span>Leggi la domanda</div>
+        <div class="how-step"><span class="num">🎯</span>Scegli la risposta</div>
+        <div class="how-step"><span class="num">💡</span>Leggi la spiegazione e prosegui</div>
+      </div>
+      <ul><li>È il ripasso ideale per consolidare quanto studiato: buona fortuna!</li></ul>
+      <button class="start-btn" onclick="startGame()">▶ Inizia</button>
+    </div>
+    <div id="gamePage" class="game-wrap hidden">
+      <div class="progress-row">
+        <span class="score-badge">Domanda <span id="qNum">1</span>/12</span>
+        <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+        <span class="prog-label">Corrette: <span id="scoreNum">0</span></span>
+      </div>
+      <div class="topic-tag" id="topicTag"></div>
+      <div class="question-text" id="qText"></div>
+      <div class="options-grid" id="optGrid"></div>
+      <div class="feedback-box" id="fbBox"></div>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()">Domanda successiva →</button>
+    </div>
+    <div id="resultPage" class="result-page hidden">
+      <div class="result-box">
+        <div class="result-icon" id="resultIcon"></div>
+        <h2 id="resultTitle"></h2><p id="resultText"></p>
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-btns">
+          <button class="btn-prim" onclick="resetGame()">🔄 Rigioca</button>
+          <button class="btn-sec" onclick="window.close()">Torna al corso</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const QS=[
+  {tag:'🏛️ Ambito',q:'In quali due categorie la NIS2 divide i soggetti nel suo perimetro?',options:['Soggetti essenziali e soggetti importanti','Grandi e piccole imprese','Soggetti pubblici e privati','OSE e DSP'],correct:0,fb:'La NIS2 supera le vecchie categorie NIS1 (OSE/DSP) e introduce i soggetti essenziali (Allegato I) e importanti (Allegato II).'},
+  {tag:'🚨 Notifiche',q:'Qual è la corretta sequenza di notifica di un incidente significativo?',options:['Preallarme 24h → notifica 72h → relazione finale 1 mese','Un\'unica notifica immediata','Notifica entro 30 giorni','Solo la relazione finale entro 6 mesi'],correct:0,fb:'La scansione è: preallarme entro 24 ore, notifica dell\'incidente entro 72 ore, relazione finale entro 1 mese (più eventuale relazione intermedia).'},
+  {tag:'📐 Misure',q:'Che tipo di misure richiede l\'art. 21 della NIS2?',options:['Misure tecniche, operative e organizzative adeguate e proporzionate, con approccio multirischio','Misure identiche per tutti i soggetti','Solo misure tecniche','Misure facoltative'],correct:0,fb:'L\'art. 21 impone misure proporzionate al rischio, allo stato dell\'arte e alle dimensioni del soggetto, con approccio multirischio.'},
+  {tag:'🏛️ Governance',q:'Chi deve approvare le misure di gestione del rischio e sovraintendere alla loro attuazione?',options:['Il reparto IT','Gli organi di amministrazione e direzione','Il DPO','L\'ACN'],correct:1,fb:'È l\'obbligo di governance dell\'art. 20: gli organi di gestione approvano le misure, ne sovraintendono l\'attuazione e restano direttamente responsabili.'},
+  {tag:'💰 Sanzioni',q:'Qual è la sanzione massima per i soggetti essenziali?',options:['10 milioni € o 2% del fatturato mondiale','7 milioni € o 1,4%','20 milioni € o 4%','5 milioni € o 1%'],correct:0,fb:'Soggetti essenziali: fino a 10 M€ o 2% del fatturato mondiale; importanti: 7 M€ o 1,4%.'},
+  {tag:'🇮🇹 Recepimento',q:'Qual è la norma italiana che recepisce la NIS2?',options:['Il D.Lgs 138/2024','La Legge 90/2024','Il Regolamento (UE) 2022/2555','Il D.Lgs 231/2001'],correct:0,fb:'Il D.Lgs 138/2024 recepisce la NIS2 in Italia (in vigore dal 16 ottobre 2024). La Legge 90/2024 è una norma distinta sui reati informatici.'},
+  {tag:'🔍 Vigilanza',q:'Che tipo di vigilanza la NIS2 riserva ai soggetti essenziali rispetto agli importanti?',options:['Vigilanza ex-ante (proattiva) per gli essenziali, ex-post per gli importanti','La stessa per entrambi','Nessuna vigilanza','Solo autocertificazione'],correct:0,fb:'La NIS2 prevede una vigilanza ex-ante (proattiva) per i soggetti essenziali e una vigilanza ex-post (su indicazione o prova) per i soggetti importanti.'},
+  {tag:'🔗 Supply chain',q:'La sicurezza della catena di approvvigionamento nella NIS2 è:',options:['Una misura obbligatoria dell\'art. 21','Facoltativa','Prevista solo per i soggetti essenziali','Non contemplata'],correct:0,fb:'La sicurezza della supply chain è una misura esplicita dell\'art. 21(2): il soggetto deve gestire i rischi legati ai propri fornitori.'},
+  {tag:'📑 Sistema di gestione',q:'Qual è il riferimento riconosciuto per un sistema di gestione della sicurezza (ISMS)?',options:['ISO/IEC 27001 (e in Italia la UNI/PdR 174:2025)','Il Modello 231','Il solo GDPR','Nessuno standard'],correct:0,fb:'La ISO/IEC 27001 è il riferimento internazionale per l\'ISMS; la UNI/PdR 174:2025 la collega agli obblighi NIS2.'},
+  {tag:'⚖️ Modello 231',q:'I reati informatici sono reati-presupposto della responsabilità degli enti ai sensi di quale articolo?',options:['Art. 24-bis del D.Lgs 231/2001','Art. 21 della NIS2','Art. 5 del GDPR','Solo art. 615-ter c.p.'],correct:0,fb:'L\'art. 24-bis del D.Lgs 231/2001 include i reati informatici tra i reati-presupposto della responsabilità amministrativa degli enti.'},
+  {tag:'🔨 Reati informatici',q:'Cosa ha previsto la Legge 90/2024 in materia di reati informatici?',options:['L\'inasprimento delle pene per i reati informatici','La loro depenalizzazione','Solo sanzioni amministrative','Nessuna modifica'],correct:0,fb:'La Legge 90/2024 ha inasprito le pene per i reati informatici (accesso abusivo, malware, estorsione tramite ransomware), con nuove aggravanti e la confisca dei beni utilizzati.'},
+  {tag:'🇪🇺 Quadro UE',q:'Insieme alla NIS2, quali strumenti compongono il quadro europeo di cybersicurezza citato nel corso?',options:['Cyber Security Act, DORA e Radio Equipment Directive','Solo il GDPR','Solo il Codice penale','Nessun altro strumento'],correct:0,fb:'Il quadro europeo comprende, oltre alla NIS2, il Cyber Security Act (certificazione e ruolo dell\'ENISA), il DORA (settore finanziario) e la Radio Equipment Directive.'},
+];
+let cur=0,score=0,shuffled=[];
+function startGame(){cur=0;score=0;shuffled=[...QS].sort(()=>Math.random()-.5);document.getElementById('scoreNum').textContent='0';loadQ();showPage('gamePage');}
+function loadQ(){if(cur>=QS.length){endGame();return;}const q=shuffled[cur];document.getElementById('qNum').textContent=cur+1;document.getElementById('progFill').style.width=((cur/QS.length)*100)+'%';document.getElementById('topicTag').textContent=q.tag;document.getElementById('qText').textContent=q.q;document.getElementById('fbBox').className='feedback-box';document.getElementById('nextBtn').className='next-btn';const grid=document.getElementById('optGrid');grid.innerHTML='';const opts=q.options.map((t,i)=>({t,i})).sort(()=>Math.random()-.5);opts.forEach(({t,i})=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t;btn.dataset.orig=i;btn.onclick=()=>answer(i,q);grid.appendChild(btn);});}
+function answer(idx,q){const isCorrect=idx===q.correct;if(isCorrect)score++;document.getElementById('scoreNum').textContent=score;document.querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;const o=parseInt(b.dataset.orig);if(o===q.correct)b.classList.add(isCorrect&&o===idx?'correct':'reveal');else if(o===idx&&!isCorrect)b.classList.add('wrong');});document.getElementById('fbBox').innerHTML='<b>'+(isCorrect?'✓ Corretto!':'✗ Non corretto.')+'</b> '+q.fb;document.getElementById('fbBox').classList.add('show');document.getElementById('nextBtn').classList.add('show');}
+function nextQ(){cur++;loadQ();}
+function endGame(){const pct=Math.round((score/QS.length)*100);document.getElementById('resultIcon').textContent=pct>=80?'🏆':pct>=50?'👍':'💪';document.getElementById('resultTitle').textContent=pct>=80?'Corso padroneggiato!':pct>=50?'Buona base!':'Da ripassare!';document.getElementById('resultText').textContent='Hai ripercorso gli argomenti principali del corso: ambito e categorie, obblighi di notifica, misure di sicurezza e governance, recepimento italiano (D.Lgs 138/2024 e Legge 90/2024), Modello 231, sanzioni e quadro europeo.';document.getElementById('resultScore').textContent='Corrette: '+score+'/'+QS.length;showPage('resultPage');}
+function resetGame(){showPage('instrPage');}
+function showPage(id){['instrPage','gamePage','resultPage'].forEach(p=>document.getElementById(p).classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
+</script>
+</body>
+</html>
